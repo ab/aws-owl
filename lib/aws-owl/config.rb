@@ -26,6 +26,7 @@ module AwsOwl
       if ! @opts || ! @opts[:aws]
         raise AwsOwl::Error.new "No key :aws in config."
       end
+      @opts[:aws][:logger] = Logger.new($stderr)
       AWS.config @opts[:aws]
     end
   end

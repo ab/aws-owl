@@ -1,5 +1,14 @@
 require 'yaml'
 
+# not needed in ruby 1.9... sigh
+class Symbol
+  include Comparable
+
+  def <=>(other)
+    self.to_s <=> other.to_s
+  end
+end
+
 class Hash
   # Replace the to_yaml function so it sorts hashes by keys
   #

@@ -14,9 +14,9 @@ require 'aws-owl/sortedyaml'
 require 'aws-owl/aws'
 
 module AwsOwl
-  attr_accessor :config, :aws, :data
-
   class Owl
+    attr_accessor :config, :aws, :data
+
     def initialize
       @config = AwsOwl::Config.new
       @config.config!
@@ -24,8 +24,13 @@ module AwsOwl
       @data = {}
     end
 
+    def ec2
+      @aws.ec2
+    end
+
     def interrogate_aws
       @data[:instances] = @aws.instances
+      @data[:security_groups] = @aws.security_groups
 
     end
 
